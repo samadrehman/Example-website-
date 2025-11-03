@@ -115,7 +115,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const phoneNumber = "919876543210"; // Your WhatsApp number
+      const phoneNumber = "919009978393"; // Your WhatsApp number
 
       const message = `
 🛍 *New Order Details*  
@@ -184,15 +184,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// === MOBILE MENU ===
-const menuIcon = document.getElementById('menu-icon');
-const navLinks = document.getElementById('nav-links');
+// === MOBILE MENU (Universal Working Version) ===
+const mobileMenu = document.getElementById("mobile-menu");
+const navLinks = document.querySelector(".nav-links");
 
-if (menuIcon && navLinks) {
-  menuIcon.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menuIcon.innerHTML = navLinks.classList.contains('active')
-      ? '<i class="fas fa-times"></i>'
-      : '<i class="fas fa-bars"></i>';
+if (mobileMenu && navLinks) {
+  mobileMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+    mobileMenu.classList.toggle("active");
+
+    // Optional: animate bars into X
+    const bars = mobileMenu.querySelectorAll(".bar");
+    bars.forEach((bar, index) => {
+      if (mobileMenu.classList.contains("active")) {
+        bar.style.transform = index === 1 ? "scale(0)" : `rotate(${index === 0 ? 45 : -45}deg) translateY(${index === 0 ? 6 : -6}px)`;
+      } else {
+        bar.style.transform = "rotate(0) scale(1)";
+      }
+    });
   });
 }
